@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Училишен парламент | ОУ „Кочо Рацин“ – Прилеп</title>
+
+  <style>
+    :root {
+      --navy: #102747;
+      --blue: #1c4778;
+      --light: #f2f5f9;
+      --white: #ffffff;
+      --text: #202c3b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(23px, 4vw, 34px);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    nav {
+      background: var(--blue);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px;
+    }
+
+    nav button {
+      background: transparent;
+      color: white;
+      border: 1px solid #ffffff70;
+      border-radius: 7px;
+      padding: 11px 15px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: white;
+      color: var(--navy);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px #10274712;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h2 {
+      color: var(--navy);
+      border-bottom: 2px solid #d9e3f0;
+      padding-bottom: 12px;
+    }
+
+    h3 {
+      color: var(--blue);
+    }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    .card {
+      border: 1px solid #dce4ee;
+      border-left: 5px solid var(--blue);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 14px 0;
+      background: #fbfcfe;
+    }
+
+    .hero {
+      background: var(--navy);
+      color: white;
+      padding: 28px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      color: white;
+      border: none;
+    }
+
+    .hero strong {
+      color: #d8e8ff;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b9c6d6;
+      border-radius: 7px;
+      font: inherit;
+      margin-top: 6px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .submit-btn {
+      background: var(--navy);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: var(--blue);
+    }
+
+    .notice {
+      background: #edf4ff;
+      border-radius: 8px;
+      padding: 13px;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--blue);
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 12px;
+      background: var(--navy);
+      color: white;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      nav button {
+        flex: 1 1 40%;
+      }
+
+      .section {
+        padding: 18px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>УЧЕНИЧКИ ПАРЛАМЕНТ</h1>
+  <p>ОУ „Кочо Рацин“ – Прилеп</p>
+  <p>Учество • Соработка • Одговорност</p>
+</header>
+
+<nav aria-label="Главна навигација">
+  <button class="active" data-section="pocetna">Почетна</button>
+  <button data-section="clenovi">Членови</button>
+  <button data-section="aktivnosti">Активности</button>
+  <button data-section="predlozi">Предлози</button>
+  <button data-section="novosti">Новости</button>
+  <button data-section="pravila">Правила и улоги</button>
+  <button data-section="kontakt">Контакт</button>
+</nav>
+
+<main>
+
+  <section id="pocetna" class="section active">
+    <div class="hero">
+      <h2>Добредојдовте на страницата на Ученичкиот парламент!</h2>
+      <p>
+        Ученичкиот парламент е место каде што учениците ги споделуваат
+        своите идеи, учествуваат во училишниот живот и заеднички работат
+        за подобра училишна средина.
+      </p>
+      <p>
+        Секој ученик има право да биде сослушан, да предложи промена
+        и да придонесе за позитивна атмосфера во училиштето.
+      </p>
+      <strong>Заедно создаваме училиште во кое секој глас е важен!</strong>
+    </div>
+
+    <h3>Нашата мисија</h3>
+    <p>
+      Да ги претставуваме интересите на учениците, да поттикнуваме
+      меѓусебно почитување и да развиваме одговорност, демократија,
+      соработка и активно учество во училишната заедница.
+    </p>
+
+    <div class="card">
+      <h3>Твојот глас е важен</h3>
+      <p>
+        Имаш идеја како да го подобриме училиштето? Посети го делот
+        „Предлози“ и испрати ја твојата идеја или приговор.
+      </p>
+      <button class="submit-btn" type="button"
+        onclick="showSection('predlozi')">
+        Испрати предлог
+      </button>
+    </div>
+  </section>
+
+  <section id="clenovi" class="section">
+    <h2>Членови на Ученичкиот парламент</h2>
+
+    <div class="card">
+      <h3>Раководство</h3>
+      <p><strong>Претседател:</strong> Стефан Петровски</p>
+      <p><strong>Заменик-претседател:</strong> Нина Андоноска</p>
+      <p><strong>Секретар:</strong> Михаил Секулоски</p>
+    </div>
+
+    <div class="card">
+      <h3>Координатори по одделенија</h3>
+      <p><strong>VI одделение:</strong> Мила Новоселец</p>
+      <p><strong>VII одделение:</strong> Максимилијан Петровски</p>
+      <p><strong>VIII одделение:</strong> Маја Дамеска</p>
+      <p><strong>IX одделение:</strong> Теодор Тркалески</p>
+    </div>
+
+    <div class="card">
+      <h3>Координативно тело</h3>
+      <p>Благица Кусеска и Кети Шишкоска</p>
+    </div>
+
+    <div class="card">
+      <h3>Комисија за доверба и соработка</h3>
+      <ul>
+        <li>Михаил Секулоски</li>
+        <li>Елизабета Велеска</li>
+        <li>Сокле Митрески</li>
+        <li>Матеа Кузеска</li>
+        <li>Ивана Лашкоска</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Претставници во училишните тела</h3>
+      <p>Стефан Петровски и Нина Андоноска.</p>
+    </div>
+
+    <p class="notice">
+      Оваа верзија содржи основен список на членовите. Пред јавно
+      објавување, проверете ги имињата и добијте одобрение од училиштето.
+    </p>
+  </section>
+
+  <section id="aktivnosti" class="section">
+    <h2>Активности</h2>
+
+    <div class="card">
+      <h3>Конститутивна средба</h3>
+      <p>
+        Во октомври 2026 година е предвидена средба за организирање
+        на работата и утврдување на приоритетите на Ученичкиот парламент.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Работилници за детските права</h3>
+      <p>
+        На 7 и 9 октомври 2026 година се планирани активности на тема
+        „Патуваме со детските права и обврски“, со цел учениците подобро
+        да ги запознаат своите права и одговорности.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Ден на демократијата</h3>
+      <p>
+        Планирање активности што ќе ја поттикнат ученичката вклученост,
+        слободното изразување мислења и почитувањето на различните ставови.
+      </p>
+    </div>
+  </section>
+
+  <section id="predlozi" class="section">
+    <h2>Предлози и приговори од учениците</h2>
+
+    <p>
+      Имаш предлог за подобрување на училиштето или сакаш да пријавиш
+      проблем? Пополни ја формата подолу.
+    </p>
+
+    <p class="notice">
+      Испратените пораки се наменети за Ученичкиот парламент и не се
+      прикажуваат јавно на оваа веб-страница. Не внесувај лозинки,
+      адреса на живеење или други чувствителни лични податоци.
+      За сериозен проблем што бара итна помош, обрати се кај возрасно
+      лице од доверба или кај училишната стручна служба.
+    </p>
+
+    <form
+      action="https://formsubmit.co/ucenickiparlament26.27@gmail.com"
+      method="POST">
+
+      <input type="hidden" name="_subject"
+        value="Нов предлог или приговор - Ученички парламент">
+
+      <input type="hidden" name="_captcha" value="true">
+
+      <label for="ime">
+        Име (не е задолжително)
+        <input id="ime" type="text" name="Име"
+          placeholder="Внеси име ако сакаш">
+      </label>
+
+      <label for="oddelenie">
+        Одделение (не е задолжително)
+        <select id="oddelenie" name="Одделение">
+          <option value="">Избери одделение</option>
+          <option>VI одделение</option>
+          <option>VII одделение</option>
+          <option>VIII одделение</option>
+          <option>IX одделение</option>
+        </select>
+      </label>
+
+      <label for="tip">
+        Вид на порака
+        <select id="tip" name="Вид на порака" required>
+          <option value="">Избери</option>
+          <option>Предлог</option>
+          <option>Приговор</option>
+          <option>Идеја за активност</option>
+          <option>Друго</option>
+        </select>
+      </label>
+
+      <label for="poraka">
+        Твојата порака
+        <textarea id="poraka" name="Порака"
+          placeholder="Напиши го предлогот или приговорот..."
+          required maxlength="5000"></textarea>
+      </label>
+
+      <button class="submit-btn" type="submit">
+        Испрати порака
+      </button>
+    </form>
+
+    <p class="notice">
+      За испраќањето да работи, FormSubmit може прво да побара потврда
+      на наведената е-пошта. Формата сè уште треба да се тестира по
+      објавувањето на страницата.
+    </p>
+  </section>
+
+  <section id="novosti" class="section">
+    <h2>Новости</h2>
+
+    <div class="card">
+      <h3>Добредојдовте во учебната 2026/2027 година!</h3>
+      <p>
+        Ученичкиот парламент продолжува да работи на идеи и активности
+        што ќе придонесат за подобра училишна средина и поголема
+        вклученост на учениците.
+      </p>
+    </div>
+
+    <p>
+      Новите известувања ќе бидат објавувани во овој дел откако ќе
+      бидат потврдени од Ученичкиот парламент и училиштето.
+    </p>
+  </section>
+
+  <section id="pravila" class="section">
+    <h2>Правила и улоги</h2>
+
+    <div class="card">
+      <h3>Претседател</h3>
+      <p>
+        Ги координира активностите, ги води средбите и ги претставува
+        ставовите на Ученичкиот парламент.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Заменик-претседател</h3>
+      <p>
+        Му помага на претседателот и ги презема неговите задачи кога
+        тоа е потребно.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Секретар</h3>
+      <p>
+        Води белешки од средбите, ги организира записниците и помага
+        во следењето на договорените активности.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Координатори</h3>
+      <p>
+        Ги собираат мислењата на учениците од своите одделенија
+        и ги пренесуваат до Ученичкиот парламент.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Основни правила</h3>
+      <ul>
+        <li>Секој ученик има право да го изрази своето мислење.</li>
+        <li>Сите членови треба да се однесуваат со почит.</li>
+        <li>Предлозите се разгледуваат одговорно и без навредување.</li>
+        <li>Договорените активности треба да се следат и оценуваат.</li>
+        <li>Личните информации и доверливите пријави се обработуваат внимателно.</li>
+      </ul>
+    </div>
+
+    <p class="notice">
+      Ова се општи насоки. Официјалните правила треба да бидат
+      усогласени со важечките акти и процедурите на училиштето.
+    </p>
+  </section>
+
+  <section id="kontakt" class="section">
+    <h2>Контакт</h2>
+
+    <div class="card">
+      <h3>Ученички парламент</h3>
+      <p>
+        Е-пошта:
+        <a href="mailto:ucenickiparlament26.27@gmail.com">
+          ucenickiparlament26.27@gmail.com
+        </a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Училишна стручна служба</h3>
+      <p>
+        За прашања што бараат стручна помош, обрати се кај
+        училишниот психолог, педагог или училишната администрација.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Ученички парламент | ОУ „Кочо Рацин“ – Прилеп</p>
+  <p>Учебна 2026/2027 година</p>
+</footer>
+
+<script>
+  function showSection(sectionId) {
+    const sections = document.querySelectorAll(".section");
+    const buttons = document.querySelectorAll("nav button");
+
+    sections.forEach(function(section) {
+      section.classList.remove("active");
+    });
+
+    buttons.forEach(function(button) {
+      button.classList.remove("active");
+    });
+
+    const selectedSection = document.getElementById(sectionId);
+
+    if (selectedSection) {
+      selectedSection.classList.add("active");
+    }
+
+    const selectedButton = document.querySelector(
+      'nav button[data-section="' + sectionId + '"]'
+    );
+
+    if (selectedButton) {
+      selectedButton.classList.add("active");
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.querySelectorAll("nav button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      showSection(button.dataset.section);
+    });
+  });
+</script>
+
+</body>
+</html>
