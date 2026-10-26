@@ -218,6 +218,32 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
+    
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.gallery-tile {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-tile img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-tile img:hover {
+  transform: scale(1.04);
+}
+
   </style>
 </head>
 <body>
@@ -459,18 +485,31 @@
       </div>
     </section>
 
-    <section class="section" id="gallery">
-      <div class="section-heading"><h2>Галерија</h2><p>Фотографии од училишни активности, проекти и настани.</p></div>
-      <div class="notice">Фотографиите од училишните активности ќе бидат прикажани во оваа галерија.</div>
-      <div class="gallery-grid">
-        <div class="gallery-tile">📷<strong>Фотографија 1</strong><span class="small-note">Додади слика</span></div>
-        <div class="gallery-tile">📷<strong>Фотографија 2</strong><span class="small-note">Додади слика</span></div>
-        <div class="gallery-tile">📷<strong>Фотографија 3</strong><span class="small-note">Додади слика</span></div>
-        <div class="gallery-tile">📷<strong>Фотографија 4</strong><span class="small-note">Додади слика</span></div>
-        <div class="gallery-tile">📷<strong>Фотографија 5</strong><span class="small-note">Додади слика</span></div>
-        <div class="gallery-tile">📷<strong>Фотографија 6</strong><span class="small-note">Додади слика</span></div>
-      </div>
-    </section>
+   
+<section class="section" id="gallery">
+  <div class="section-heading">
+    <h2>Галерија</h2>
+    <p>Фотографии од училишни активности, проекти и настани.</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-tile"><img src="images/840071368_1562285312370226_2769309267839481407_n.jpg" alt="Училишна активност 1" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/840698834_1562286472370110_8203795587220716510_n.jpg" alt="Училишна активност 2" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841066783_1562287052370052_9182866694050635168_n.jpg" alt="Училишна активност 3" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841343212_1562286319036792_7411636848924927977_n.jpg" alt="Училишна активност 4" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841866793_1562288242369933_2048599756256428755_n.jpg" alt="Училишна активност 5" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842192795_1562286929036731_3832221394049302763_n.jpg" alt="Училишна активност 6" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842256760_1562285779036846_8358872232290983054_n.jpg" alt="Училишна активност 7" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842368313_1562287335703357_3677777853033683481_n.jpg" alt="Училишна активност 8" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843316265_1562286009036823_212667035254220073_n.jpg" alt="Училишна активност 9" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843373722_1562287822369975_2838444286088904789_n.jpg" alt="Училишна активност 10" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843890091_1562287695703321_2424060968596489682_n.jpg" alt="Училишна активност 11" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/844302704_1562285512370206_5588507258120192902_n.jpg" alt="Училишна активност 12" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/844322051_1562285412370216_6835371987233376372_n.jpg" alt="Училишна активност 13" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/845962648_1562286622370095_6429511483095876500_n.jpg" alt="Училишна активност 14" loading="lazy"></div>
+  </div>
+</section>
+
 
     <section class="section" id="documents">
       <div class="section-heading"><h2>Правила, права и улоги</h2><p>Информации за ученичкото организирање во ООУ „Кочо Рацин“ – Прилеп, подготвени според Правилникот за ученичко организирање и учество за ученичко организирање и учество, донесен на 2 февруари 2021 година (деловоден број 01-39/2), врз основа на член 68 од Законот за основното образование и Статутот на училиштето, како и според материјалите за учебната 2026/2027 година. Овде се прикажани објаснувања, а не оригиналните документи.</p></div>
