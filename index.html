@@ -243,6 +243,135 @@
 .gallery-tile img:hover {
   transform: scale(1.04);
 }
+    
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.gallery-tile {
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-tile img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-tile:hover img {
+  transform: scale(1.04);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.96);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-content {
+  width: calc(100% - 150px);
+  height: calc(100% - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.15s ease;
+}
+
+.lightbox button {
+  position: absolute;
+  border: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.lightbox button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 22px;
+}
+
+.lightbox-prev {
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox .lightbox-controls {
+  position: absolute;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lightbox-controls button {
+  position: static;
+  font-size: 14px;
+  padding: 9px 12px;
+}
+
+#photo-counter {
+  color: white;
+  font-size: 14px;
+  padding: 8px;
+}
+
+@media (max-width: 600px) {
+  .lightbox-content {
+    width: calc(100% - 70px);
+    height: calc(100% - 150px);
+  }
+
+  .lightbox button {
+    padding: 9px 11px;
+  }
+
+  .lightbox-controls {
+    width: 100%;
+  }
+}
+
 
   </style>
 </head>
@@ -486,6 +615,7 @@
     </section>
 
    
+
 <section class="section" id="gallery">
   <div class="section-heading">
     <h2>Галерија</h2>
@@ -493,20 +623,20 @@
   </div>
 
   <div class="gallery-grid">
-    <div class="gallery-tile"><img src="images/840071368_1562285312370226_2769309267839481407_n.jpg" alt="Училишна активност 1" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/840698834_1562286472370110_8203795587220716510_n.jpg" alt="Училишна активност 2" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/841066783_1562287052370052_9182866694050635168_n.jpg" alt="Училишна активност 3" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/841343212_1562286319036792_7411636848924927977_n.jpg" alt="Училишна активност 4" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/841866793_1562288242369933_2048599756256428755_n.jpg" alt="Училишна активност 5" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/842192795_1562286929036731_3832221394049302763_n.jpg" alt="Училишна активност 6" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/842256760_1562285779036846_8358872232290983054_n.jpg" alt="Училишна активност 7" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/842368313_1562287335703357_3677777853033683481_n.jpg" alt="Училишна активност 8" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/843316265_1562286009036823_212667035254220073_n.jpg" alt="Училишна активност 9" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/843373722_1562287822369975_2838444286088904789_n.jpg" alt="Училишна активност 10" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/843890091_1562287695703321_2424060968596489682_n.jpg" alt="Училишна активност 11" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/844302704_1562285512370206_5588507258120192902_n.jpg" alt="Училишна активност 12" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/844322051_1562285412370216_6835371987233376372_n.jpg" alt="Училишна активност 13" loading="lazy"></div>
-    <div class="gallery-tile"><img src="images/845962648_1562286622370095_6429511483095876500_n.jpg" alt="Училишна активност 14" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/840071368_1562285312370226_2769309267839481407_n.jpg" alt="Фотографија 1" onclick="openLightbox(0)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/840698834_1562286472370110_8203795587220716510_n.jpg" alt="Фотографија 2" onclick="openLightbox(1)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841066783_1562287052370052_9182866694050635168_n.jpg" alt="Фотографија 3" onclick="openLightbox(2)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841343212_1562286319036792_7411636848924927977_n.jpg" alt="Фотографија 4" onclick="openLightbox(3)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/841866793_1562288242369933_2048599756256428755_n.jpg" alt="Фотографија 5" onclick="openLightbox(4)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842192795_1562286929036731_3832221394049302763_n.jpg" alt="Фотографија 6" onclick="openLightbox(5)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842256760_1562285779036846_8358872232290983054_n.jpg" alt="Фотографија 7" onclick="openLightbox(6)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/842368313_1562287335703357_3677777853033683481_n.jpg" alt="Фотографија 8" onclick="openLightbox(7)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843316265_1562286009036823_212667035254220073_n.jpg" alt="Фотографија 9" onclick="openLightbox(8)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843373722_1562287822369975_2838444286088904789_n.jpg" alt="Фотографија 10" onclick="openLightbox(9)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/843890091_1562287695703321_2424060968596489682_n.jpg" alt="Фотографија 11" onclick="openLightbox(10)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/844302704_1562285512370206_5588507258120192902_n.jpg" alt="Фотографија 12" onclick="openLightbox(11)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/844322051_1562285412370216_6835371987233376372_n.jpg" alt="Фотографија 13" onclick="openLightbox(12)" loading="lazy"></div>
+    <div class="gallery-tile"><img src="images/845962648_1562286622370095_6429511483095876500_n.jpg" alt="Фотографија 14" onclick="openLightbox(13)" loading="lazy"></div>
   </div>
 </section>
 
@@ -584,5 +714,103 @@
 
 
   </script>
+  
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Затвори">✕</button>
+
+  <button class="lightbox-prev" onclick="changePhoto(-1, event)" aria-label="Претходна слика">❮</button>
+
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <img id="lightbox-image" src="" alt="Зголемена фотографија">
+  </div>
+
+  <button class="lightbox-next" onclick="changePhoto(1, event)" aria-label="Следна слика">❯</button>
+
+  <div class="lightbox-controls" onclick="event.stopPropagation()">
+    <button onclick="zoomPhoto(0.25)">＋ Зумирај</button>
+    <button onclick="zoomPhoto(-0.25)">− Одзумирај</button>
+    <button onclick="resetZoom()">Ресетирај</button>
+    <span id="photo-counter">1 / 14</span>
+  </div>
+</div>
+
+<script>
+let currentPhoto = 0;
+let photoZoom = 1;
+
+function galleryPhotos() {
+  return Array.from(document.querySelectorAll('#gallery .gallery-tile img'));
+}
+
+function openLightbox(index) {
+  currentPhoto = index;
+  photoZoom = 1;
+
+  const box = document.getElementById('lightbox');
+  box.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  showPhoto();
+}
+
+function showPhoto() {
+  const photos = galleryPhotos();
+  if (!photos.length) return;
+
+  currentPhoto = (currentPhoto + photos.length) % photos.length;
+
+  const image = document.getElementById('lightbox-image');
+  image.src = photos[currentPhoto].src;
+  image.alt = photos[currentPhoto].alt;
+  image.style.transform = 'scale(' + photoZoom + ')';
+
+  document.getElementById('photo-counter').textContent =
+    (currentPhoto + 1) + ' / ' + photos.length;
+}
+
+function changePhoto(direction, event) {
+  if (event) event.stopPropagation();
+
+  const photos = galleryPhotos();
+  currentPhoto = (currentPhoto + direction + photos.length) % photos.length;
+  photoZoom = 1;
+  showPhoto();
+}
+
+function zoomPhoto(amount) {
+  photoZoom = Math.min(4, Math.max(1, photoZoom + amount));
+  document.getElementById('lightbox-image').style.transform =
+    'scale(' + photoZoom + ')';
+}
+
+function resetZoom() {
+  photoZoom = 1;
+  document.getElementById('lightbox-image').style.transform = 'scale(1)';
+}
+
+function closeLightbox(event) {
+  if (event && event.target !== document.getElementById('lightbox')) return;
+
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(event) {
+  const box = document.getElementById('lightbox');
+  if (!box.classList.contains('active')) return;
+
+  if (event.key === 'Escape') closeLightbox();
+  if (event.key === 'ArrowRight') changePhoto(1);
+  if (event.key === 'ArrowLeft') changePhoto(-1);
+  if (event.key === '+' || event.key === '=') zoomPhoto(0.25);
+  if (event.key === '-') zoomPhoto(-0.25);
+});
+
+document.getElementById('lightbox-image').addEventListener('wheel', function(event) {
+  event.preventDefault();
+  zoomPhoto(event.deltaY < 0 ? 0.25 : -0.25);
+}, { passive: false });
+</script>
+
 </body>
 </html>
