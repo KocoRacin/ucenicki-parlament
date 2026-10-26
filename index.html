@@ -365,29 +365,91 @@
       </div>
     </section>
 
-    <section class="section" id="proposals">
-      <div class="section-heading"><h2>Предлози од учениците</h2><p>Имате идеја или сакате да пријавите проблем? Испратете предлог или приговор директно преку оваа форма.</p></div>
-      <div class="card form-card">
-        <div class="notice"><strong>Приватност:</strong> пораките се испраќаат до е-поштата на Ученичкиот парламент и не се објавуваат јавно на веб-сајтот. Не внесувајте лозинки, адреса, телефонски број или детали што не се потребни за разгледување на пораката. Ако станува збор за итна опасност, веднаш обратете се кај наставник, стручната служба или друг доверлив возрасен.</div>
-        <form id="proposalForm" action="https://formsubmit.co/ucenickiparlament26.27@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Нова порака од веб-сајтот на Ученичкиот парламент">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px" aria-hidden="true">
-          <div class="form-row">
-            <div><label for="messageType">Вид на порака</label><select id="messageType" name="Вид на порака" required><option value="">Избери</option><option>Предлог</option><option>Приговор</option></select></div>
-            <div><label for="proposalTopic">Тема</label><select id="proposalTopic" name="Тема" required><option value="">Избери тема</option><option>Училишна средина</option><option>Настани и активности</option><option>Безбедност и почитување</option><option>Детски права</option><option>Екологија</option><option>Друго</option></select></div>
-          </div>
-          <div class="form-row">
-            <div><label for="proposalName">Име (незадолжително)</label><input id="proposalName" name="Име" maxlength="80" placeholder="Може да остане празно"></div>
-            <div><label for="proposalClass">Одделение (незадолжително)</label><input id="proposalClass" name="Одделение" maxlength="20" placeholder="На пр. 8-2"></div>
-          </div>
-          <label for="proposalText">Опиши го предлогот или приговорот</label>
-          <textarea id="proposalText" name="Порака" maxlength="3000" required placeholder="Објасни што се случува или што би сакал/а да се подобри..."></textarea>
-          <p class="small-note">Името и одделението можеш да ги оставиш празни. Со испраќањето, пораката оди до овластеното лице што ја следи е-поштата на парламентот.</p>
-          <button class="button primary" type="submit">Испрати порака</button>
-        </form>
+   
+<section class="section" id="proposals">
+  <div class="section-heading">
+    <h2>Предлози од учениците</h2>
+    <p>Имате идеја или сакате да пријавите проблем? Испратете предлог или приговор директно преку оваа форма.</p>
+  </div>
+
+  <div class="card form-card">
+    <div class="notice">
+      <strong>Приватност:</strong> пораките се испраќаат до е-поштата на Ученичкиот парламент и не се објавуваат јавно на веб-сајтот. Не внесувајте лозинки, адреса, телефонски број или детали што не се потребни за разгледување на пораката. Ако станува збор за итна опасност, веднаш обратете се кај наставник, стручната служба или друг доверлив возрасен.
+    </div>
+
+    <form id="proposalForm"
+          action="https://formsubmit.co/ucenickiparlament26.27@gmail.com"
+          method="POST">
+
+      <input type="hidden" name="_subject" value="Нова порака од веб-сајтот на Ученичкиот парламент">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://kocoracin.github.io/ucenicki-parlament/">
+
+      <input type="text"
+             name="_honey"
+             tabindex="-1"
+             autocomplete="off"
+             style="position:absolute;left:-10000px"
+             aria-hidden="true">
+
+      <div class="form-row">
+        <div>
+          <label for="messageType">Вид на порака</label>
+          <select id="messageType" name="Вид на порака" required>
+            <option value="">Избери</option>
+            <option>Предлог</option>
+            <option>Приговор</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="proposalTopic">Тема</label>
+          <select id="proposalTopic" name="Тема" required>
+            <option value="">Избери тема</option>
+            <option>Училишна средина</option>
+            <option>Настани и активности</option>
+            <option>Безбедност и почитување</option>
+            <option>Детски права</option>
+            <option>Екологија</option>
+            <option>Друго</option>
+          </select>
+        </div>
       </div>
-    </section>
+
+      <div class="form-row">
+        <div>
+          <label for="proposalName">Име (незадолжително)</label>
+          <input id="proposalName"
+                 name="Име"
+                 maxlength="80"
+                 placeholder="Може да остане празно">
+        </div>
+
+        <div>
+          <label for="proposalClass">Одделение (незадолжително)</label>
+          <input id="proposalClass"
+                 name="Одделение"
+                 maxlength="20"
+                 placeholder="На пр. 8-а">
+        </div>
+      </div>
+
+      <label for="proposalText">Опиши го предлогот или приговорот</label>
+      <textarea id="proposalText"
+                name="Порака"
+                maxlength="3000"
+                required
+                placeholder="Објасни што се случува или што би сакал/а да се подобри..."></textarea>
+
+      <p class="small-note">
+        Името и одделението можеш да ги оставиш празни. Со испраќањето, пораката оди до овластеното лице што ја следи е-поштата на парламентот.
+      </p>
+
+      <button class="button primary" type="submit">Испрати порака</button>
+    </form>
+  </div>
+</section>
 
     <section class="section" id="news">
       <div class="section-heading"><h2>Новости</h2><p>Известувања и информации од Училишниот парламент.</p></div>
