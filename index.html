@@ -1,542 +1,487 @@
-
 <!DOCTYPE html>
 <html lang="mk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Веб-страница на Училишниот парламент при ОУ „Кочо Рацин“ – Прилеп.">
   <title>Училишен парламент | ОУ „Кочо Рацин“ – Прилеп</title>
-
   <style>
     :root {
-      --navy: #102747;
-      --blue: #1c4778;
-      --light: #f2f5f9;
+      --navy: #142b4a;
+      --navy-2: #1d416b;
+      --blue: #2e6399;
+      --pale: #edf3f9;
       --white: #ffffff;
-      --text: #202c3b;
+      --ink: #172638;
+      --muted: #5d6c7e;
+      --line: #d9e2ec;
+      --shadow: 0 12px 32px rgba(20, 43, 74, .09);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--light);
-      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f6f8fb;
+      line-height: 1.6;
     }
-
-    header {
+    button, input, textarea, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .site-header {
       background: var(--navy);
-      color: white;
-      text-align: center;
-      padding: 28px 15px;
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
     }
-
-    header h1 {
-      margin: 0 0 10px;
-      font-size: clamp(23px, 4vw, 34px);
-    }
-
-    header p {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    nav {
-      background: var(--blue);
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 22px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      padding: 12px;
+      align-items: center;
+      gap: 14px;
     }
-
-    nav button {
-      background: transparent;
-      color: white;
-      border: 1px solid #ffffff70;
-      border-radius: 7px;
-      padding: 11px 15px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    nav button:hover,
-    nav button.active {
-      background: white;
+    .logo-mark {
+      width: 48px; height: 48px; flex: 0 0 48px;
+      display: grid; place-items: center;
+      border-radius: 13px;
+      background: var(--white);
       color: var(--navy);
+      font-size: 25px;
+      font-weight: 800;
     }
-
-    main {
-      max-width: 1000px;
-      margin: 25px auto;
-      padding: 0 16px;
+    .brand { flex: 1; min-width: 0; }
+    .brand strong { display: block; font-size: 16px; line-height: 1.3; }
+    .brand span { display: block; font-size: 12px; color: #d4e2f2; margin-top: 3px; }
+    .menu-toggle {
+      display: none;
+      color: white; background: transparent;
+      border: 1px solid #7890ad; border-radius: 9px;
+      padding: 8px 12px; cursor: pointer;
     }
-
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 22px 12px;
+      display: flex; flex-wrap: wrap; gap: 7px;
+    }
+    .nav button {
+      color: #e8eff7; background: transparent;
+      border: 1px solid transparent; border-radius: 8px;
+      padding: 8px 12px; cursor: pointer;
+      font-size: 13px; font-weight: 700;
+      transition: background .2s, color .2s;
+    }
+    .nav button:hover, .nav button.active {
+      background: var(--white); color: var(--navy);
+    }
+    main { min-height: 68vh; }
     .section {
       display: none;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 14px #10274712;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 38px 22px 54px;
+      animation: appear .22s ease-out;
     }
-
-    .section.active {
-      display: block;
-    }
-
-    h2 {
-      color: var(--navy);
-      border-bottom: 2px solid #d9e3f0;
-      padding-bottom: 12px;
-    }
-
-    h3 {
-      color: var(--blue);
-    }
-
-    p, li {
-      line-height: 1.7;
-    }
-
-    .card {
-      border: 1px solid #dce4ee;
-      border-left: 5px solid var(--blue);
-      border-radius: 8px;
-      padding: 15px;
-      margin: 14px 0;
-      background: #fbfcfe;
-    }
-
+    .section.active { display: block; }
+    @keyframes appear { from { opacity: .45; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
     .hero {
-      background: var(--navy);
-      color: white;
-      padding: 28px;
-      border-radius: 10px;
-      text-align: center;
+      position: relative; overflow: hidden;
+      border-radius: 22px; padding: clamp(28px, 6vw, 68px);
+      background: linear-gradient(125deg, #142b4a 0%, #1e4774 70%, #2e6399 100%);
+      color: white; box-shadow: var(--shadow);
     }
-
-    .hero h2 {
-      color: white;
-      border: none;
+    .hero:after {
+      content: ""; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      border: 42px solid rgba(255,255,255,.07);
+      right: -90px; bottom: -150px; pointer-events: none;
     }
-
-    .hero strong {
-      color: #d8e8ff;
+    .eyebrow {
+      display: inline-block; color: #d9e8f8;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px; padding: 5px 12px;
+      font-size: 12px; font-weight: 700; letter-spacing: .3px;
     }
-
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 20px;
+    h1 { font-size: clamp(30px, 5vw, 54px); line-height: 1.12; margin: 20px 0 16px; max-width: 760px; }
+    .hero p { max-width: 690px; color: #e1ebf6; font-size: clamp(16px, 2vw, 19px); margin: 0 0 25px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--white); color: var(--navy);
+      padding: 11px 17px; border: 0; border-radius: 9px;
+      font-weight: 800; cursor: pointer; text-decoration: none;
     }
-
-    label {
-      font-weight: bold;
+    .button.primary { background: var(--navy); color: white; }
+    .button.outline { border: 1px solid var(--line); background: white; }
+    .button:hover { filter: brightness(.96); }
+    .section-heading { margin-bottom: 22px; }
+    .section-heading h2 { color: var(--navy); font-size: clamp(26px, 3.5vw, 36px); margin: 0 0 7px; }
+    .section-heading p { color: var(--muted); margin: 0; max-width: 760px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; margin-top: 25px; }
+    .card {
+      background: white; border: 1px solid var(--line);
+      border-radius: 15px; padding: 21px; box-shadow: 0 5px 18px rgba(20,43,74,.035);
     }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #b9c6d6;
-      border-radius: 7px;
-      font: inherit;
-      margin-top: 6px;
+    .card h3 { margin: 9px 0 7px; color: var(--navy); font-size: 18px; }
+    .card p { color: var(--muted); margin: 0; }
+    .card-icon {
+      width: 43px; height: 43px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: var(--pale); font-size: 22px;
     }
-
-    textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    .submit-btn {
-      background: var(--navy);
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 7px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .submit-btn:hover {
-      background: var(--blue);
-    }
-
     .notice {
-      background: #edf4ff;
-      border-radius: 8px;
-      padding: 13px;
-      font-size: 14px;
+      border-left: 4px solid var(--blue); background: #eaf2fa;
+      border-radius: 0 10px 10px 0; padding: 14px 17px; color: #244665;
+      margin: 22px 0;
     }
-
-    a {
-      color: var(--blue);
-      overflow-wrap: anywhere;
+    .member-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .member { text-align: center; }
+    .avatar {
+      width: 70px; height: 70px; border-radius: 50%;
+      display: grid; place-items: center; margin: 0 auto 12px;
+      background: var(--pale); color: var(--navy); font-size: 28px;
     }
-
-    footer {
-      text-align: center;
-      padding: 22px 12px;
-      background: var(--navy);
-      color: white;
-      margin-top: 30px;
+    .role { display: inline-block; font-size: 12px; color: var(--blue); background: var(--pale); padding: 4px 9px; border-radius: 999px; margin-top: 7px; }
+    .empty-state {
+      padding: 22px; border: 1px dashed #aebed0; border-radius: 12px;
+      background: white; color: var(--muted);
     }
-
+    .event-date {
+      display: inline-block; color: var(--blue); background: var(--pale);
+      border-radius: 7px; padding: 5px 9px; font-weight: 800; font-size: 12px;
+    }
+    .form-card { max-width: 760px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    label { display: block; color: var(--navy); font-weight: 700; font-size: 14px; margin: 14px 0 6px; }
+    input, textarea, select {
+      width: 100%; padding: 12px 13px; border: 1px solid #cbd6e2;
+      border-radius: 9px; background: white; color: var(--ink);
+    }
+    input:focus, textarea:focus, select:focus { outline: 3px solid #d6e7f8; border-color: var(--blue); }
+    textarea { resize: vertical; min-height: 130px; }
+    .small-note { font-size: 13px; color: var(--muted); }
+    .document-list { display: grid; gap: 12px; }
+    .document-item {
+      display: flex; align-items: center; gap: 14px;
+      background: white; border: 1px solid var(--line);
+      border-radius: 12px; padding: 15px;
+    }
+    .document-item .doc-icon { font-size: 24px; }
+    .document-item .doc-info { flex: 1; }
+    .document-item h3 { margin: 0; color: var(--navy); font-size: 16px; }
+    .document-item p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 13px; }
+    .gallery-tile {
+      min-height: 145px; display: grid; place-items: center;
+      text-align: center; border: 1px dashed #aebed0;
+      border-radius: 13px; padding: 18px; background: white; color: var(--muted);
+    }
+    .gallery-tile strong { display: block; color: var(--navy); margin-top: 6px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .table-wrap { overflow-x: auto; background: white; border: 1px solid var(--line); border-radius: 12px; margin-top: 18px; }
+    table { border-collapse: collapse; width: 100%; min-width: 620px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+    th { background: var(--navy); color: white; font-size: 13px; }
+    td { font-size: 14px; }
+    tbody tr:nth-child(even) { background: #f5f8fc; }
+    .subheading { margin: 28px 0 10px; color: var(--navy); font-size: 22px; }
+    .site-footer { background: #0e2038; color: #dce6f1; padding: 25px 22px; }
+    .footer-inner { max-width: 1180px; margin: auto; display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; font-size: 13px; }
+    .footer-inner p { margin: 0; }
+    .status { margin-top: 13px; font-weight: 700; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 800px) {
+      .cards, .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .header-inner { padding: 12px 16px; }
+      .nav { padding: 0 16px 12px; }
+    }
     @media (max-width: 600px) {
-      nav button {
-        flex: 1 1 40%;
-      }
-
-      .section {
-        padding: 18px;
-      }
-
-      .hero {
-        padding: 20px;
-      }
+      .menu-toggle { display: block; }
+      .nav { display: none; padding-top: 0; flex-direction: column; align-items: stretch; }
+      .nav.open { display: flex; }
+      .nav button { text-align: left; padding: 11px 12px; }
+      .brand strong { font-size: 13px; }
+      .brand span { font-size: 11px; }
+      .logo-mark { width: 41px; height: 41px; flex-basis: 41px; font-size: 22px; }
+      .section { padding: 24px 15px 38px; }
+      .hero { border-radius: 16px; padding: 27px 21px; }
+      .cards, .member-grid, .contact-grid, .form-row { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+      .gallery-tile { min-height: 125px; padding: 12px; }
+      .document-item { align-items: flex-start; flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
-
 <body>
-
-<header>
-  <h1>УЧЕНИЧКИ ПАРЛАМЕНТ</h1>
-  <p>ОУ „Кочо Рацин“ – Прилеп</p>
-  <p>Учество • Соработка • Одговорност</p>
-</header>
-
-<nav aria-label="Главна навигација">
-  <button class="active" data-section="pocetna">Почетна</button>
-  <button data-section="clenovi">Членови</button>
-  <button data-section="aktivnosti">Активности</button>
-  <button data-section="predlozi">Предлози</button>
-  <button data-section="novosti">Новости</button>
-  <button data-section="pravila">Правила и улоги</button>
-  <button data-section="kontakt">Контакт</button>
-</nav>
-
-<main>
-
-  <section id="pocetna" class="section active">
-    <div class="hero">
-      <h2>Добредојдовте на страницата на Ученичкиот парламент!</h2>
-      <p>
-        Ученичкиот парламент е место каде што учениците ги споделуваат
-        своите идеи, учествуваат во училишниот живот и заеднички работат
-        за подобра училишна средина.
-      </p>
-      <p>
-        Секој ученик има право да биде сослушан, да предложи промена
-        и да придонесе за позитивна атмосфера во училиштето.
-      </p>
-      <strong>Заедно создаваме училиште во кое секој глас е важен!</strong>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-mark" aria-hidden="true">УП</div>
+      <div class="brand">
+        <strong>УЧИЛИШЕН ПАРЛАМЕНТ</strong>
+        <span>ОУ „Кочо Рацин“ – Прилеп</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">☰ Мени</button>
     </div>
+    <nav class="nav" id="mainNav" aria-label="Главна навигација">
+      <button class="active" data-section="home">Почетна</button>
+      <button data-section="members">Членови</button>
+      <button data-section="activities">Активности</button>
+      <button data-section="proposals">Предлози</button>
+      <button data-section="news">Новости</button>
+      <button data-section="gallery">Галерија</button>
+      <button data-section="documents">Правила и улоги</button>
+      <button data-section="contact">Контакт</button>
+    </nav>
+  </header>
 
-    <h3>Нашата мисија</h3>
-    <p>
-      Да ги претставуваме интересите на учениците, да поттикнуваме
-      меѓусебно почитување и да развиваме одговорност, демократија,
-      соработка и активно учество во училишната заедница.
-    </p>
+  <main>
+    <section class="section active" id="home">
+      <div class="hero">
+        <span class="eyebrow">ОУ „Кочо Рацин“ – Прилеп</span>
+        <h1>Твојот глас има значење.</h1>
+        <p>Училишниот парламент е место каде што учениците ги споделуваат своите идеи, предлагаат подобрувања и заедно учествуваат во создавањето позитивна училишна средина.</p>
+        <button class="button" data-go="members">Запознај го парламентот →</button>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">👥</div>
+          <h3>Ученички глас</h3>
+          <p>Секој ученик треба да има можност да биде сослушан и со почит да го изрази своето мислење.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">💡</div>
+          <h3>Идеи и решенија</h3>
+          <p>Претвораме добри идеи во конкретни предлози што можат да го подобрат училишниот живот.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🤝</div>
+          <h3>Соработка</h3>
+          <p>Градиме одговорност, тимска работа, почитување и активно учество во училишната заедница.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Нашата цел:</strong> училиште во кое учениците се вклучени, информирани и охрабрени да придонесуваат.</div>
+    </section>
 
-    <div class="card">
-      <h3>Твојот глас е важен</h3>
-      <p>
-        Имаш идеја како да го подобриме училиштето? Посети го делот
-        „Предлози“ и испрати ја твојата идеја или приговор.
-      </p>
-      <button class="submit-btn" type="button"
-        onclick="showSection('predlozi')">
-        Испрати предлог
-      </button>
+    <section class="section" id="members">
+      <div class="section-heading">
+        <h2>Членови и тела на парламентот</h2>
+        <p>Ученичкиот парламент ги обединува ученичките претставници и телата што придонесуваат за активно, одговорно и организирано ученичко учество во училиштето.</p>
+      </div>
+      <div class="cards">
+        <article class="card member"><div class="avatar" aria-hidden="true">★</div><h3>Стефан Петровски</h3><p>Раководи со работата на Училишниот парламент и ги застапува интересите на учениците.</p><span class="role">Претседател</span></article>
+        <article class="card member"><div class="avatar" aria-hidden="true">◈</div><h3>Нина Андоноска</h3><p>Му помага на претседателот и го заменува кога е потребно.</p><span class="role">Заменик-претседател</span></article>
+        <article class="card member"><div class="avatar" aria-hidden="true">✓</div><h3>Михаил Секулоски</h3><p>Ја врши секретарската работа и учествува во подготовката на состаноците.</p><span class="role">Секретар</span></article>
+      </div>
+
+      <h3 class="subheading">Координатори на учебни години</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Учебна година / одделение</th><th>Координатор</th></tr></thead>
+        <tbody>
+          <tr><td>IV одделение</td><td>—</td></tr>
+          <tr><td>V одделение</td><td>—</td></tr>
+          <tr><td>VI одделение</td><td>Мила Новоселец</td></tr>
+          <tr><td>VII одделение</td><td>Максимилијан Петровски</td></tr>
+          <tr><td>VIII одделение</td><td>Маја Дамеска</td></tr>
+          <tr><td>IX одделение</td><td>Теодор Тркалески</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="subheading">Координативно тело на Училишниот парламент</h3>
+      <div class="cards">
+        <article class="card"><h3>Координатори</h3><p>Мила Новоселец, Максимилијан Петровски, Маја Дамеска и Теодор Тркалески.</p></article>
+        <article class="card"><h3>Наставници</h3><p>Благица Кусеска и Кети Шишкоска.</p></article>
+        <article class="card"><h3>Секретар</h3><p>Михаил Секулоски.</p></article>
+      </div>
+      <p class="small-note">Задача: изработка на предлог-програма за работа на парламентот и подготовка на материјалите за седниците.</p>
+
+      <h3 class="subheading">Комисија за доверба и соработка</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Улога</th><th>Име и презиме</th></tr></thead>
+        <tbody>
+          <tr><td>Секретар на Ученичкиот парламент</td><td>Михаил Секулоски</td></tr>
+          <tr><td>Стручен соработник</td><td>Елизабета Велеска</td></tr>
+          <tr><td>Член на Училишниот одбор</td><td>Сокле Митрески</td></tr>
+          <tr><td>Ученици што не се членови на парламентот</td><td>Матеа Кузеска и Ивана Лашкоска</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small-note">Комисијата придонесува за решавање спорови меѓу ученици и наставници, подобрување на комуникацијата и следење на ученичкото учество.</p>
+
+      <h3 class="subheading">Претставници во училишните тела</h3>
+      <div class="card"><p><strong>Стефан Петровски</strong> и <strong>Нина Андоноска</strong> се ученички претставници кои ги застапуваат интересите и ставовите на учениците во училишните тела.</p></div>
+
+      <h3 class="subheading">Претседатели и заменици на одделенските заедници</h3>
+      <p class="small-note">Претседателите и замениците-претседатели ги претставуваат своите одделенски заедници и ги пренесуваат предлозите, мислењата и прашањата на учениците.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Одделение</th><th>Претседател</th><th>Заменик-претседател</th></tr></thead>
+        <tbody>
+          <tr><td>IV-а</td><td>Андреа Тренкоска</td><td>Стефан Петрески</td></tr>
+          <tr><td>IV-б</td><td>Петар Чоловиќ</td><td>Марија Миноска</td></tr>
+          <tr><td>IV-в</td><td>Дариа Крстеска</td><td>Ања Мрмеска</td></tr>
+          <tr><td>IV-г</td><td>Ана Раковска</td><td>—</td></tr>
+          <tr><td>IV-д</td><td>Лука Маркоски</td><td>Стефан Темелкоски</td></tr>
+          <tr><td>V-а</td><td>Дариа Стојчески</td><td>Јана Митрески</td></tr>
+          <tr><td>V-б</td><td>Георгина Маркоска</td><td>Јаков Крстески</td></tr>
+          <tr><td>V-в</td><td>Александар Танески</td><td>Тамара Раеска</td></tr>
+          <tr><td>V-г</td><td>Благој Николоски</td><td>Максим Ацески</td></tr>
+          <tr><td>V-д</td><td>Иван Талески</td><td>Илија Атанасоски</td></tr>
+          <tr><td>VI-а</td><td>Давид Маркоски</td><td>Јана Смилсеска</td></tr>
+          <tr><td>VI-б</td><td>Лана Талеска</td><td>Николија Иваноска</td></tr>
+          <tr><td>VI-в</td><td>Мила Новоселец</td><td>Ненад Крстески</td></tr>
+          <tr><td>VI-г</td><td>Дарио Јованоски</td><td>Давид Илиоски</td></tr>
+          <tr><td>VII-а</td><td>Томи Николоски</td><td>—</td></tr>
+          <tr><td>VII-б</td><td>Андреј Пузески</td><td>Евгенија Најдоска</td></tr>
+          <tr><td>VII-в</td><td>Лука Станкоски</td><td>—</td></tr>
+          <tr><td>VII-г</td><td>Ива Милевска</td><td>Сара Иваноска</td></tr>
+          <tr><td>VII-д</td><td>Максимилијан Петровски</td><td>Илина Кузманоска</td></tr>
+          <tr><td>VIII-а</td><td>Михаил Секулоски</td><td>Сара Костовска</td></tr>
+          <tr><td>VIII-б</td><td>Маја Дамеска</td><td>Давид Долгоски</td></tr>
+          <tr><td>VIII-в</td><td>Симона Андоноска</td><td>Бисера Ѓорѓиоска</td></tr>
+          <tr><td>VIII-г</td><td>Нина Андоноска</td><td>—</td></tr>
+          <tr><td>VIII-д</td><td>Бисера Милошевска</td><td>Стефан Кондоски</td></tr>
+          <tr><td>IX-а</td><td>Стефан Петровски</td><td>—</td></tr>
+          <tr><td>IX-б</td><td>Михаел Велески</td><td>—</td></tr>
+          <tr><td>IX-в</td><td>Јана Маркоска</td><td>—</td></tr>
+          <tr><td>IX-г</td><td>Софија Иваноска</td><td>Антонија Хаџи-Ристеска</td></tr>
+          <tr><td>IX-д</td><td>Теодор Тркалески</td><td>Јован Велески</td></tr>
+        </tbody>
+      </table></div>
+      <div class="notice"><strong>Ученички правобранител:</strong> според Правилникот за ученичко организирање и учество, се избира со тајно гласање од учениците од VII до IX одделение. Неговата улога е да ги промовира детските права, да прима претставки и да соработува со стручната служба. </div>
+    </section>
+
+    <section class="section" id="activities">
+      <div class="section-heading"><h2>Активности и настани</h2><p>Активности на Училишниот парламент при ОУ „Кочо Рацин“ – Прилеп.</p></div>
+      <div class="cards">
+        <article class="card"><span class="event-date">Октомври 2026</span><h3>Конститутивна седница на Ученичкиот парламент</h3><p>На конститутивната седница биле разгледани организацијата на работата на парламентот, изборот на претседател и изборната комисија, како и изборот на координатори, заменик-претседател и секретар. На седницата присуствувале 24 од вкупно 30 членови.</p></article>
+        <article class="card"><span class="event-date">7 и 9 октомври 2026</span><h3>Работилници за детски права</h3><p>Во рамки на Детската недела беа реализирани две едукативни работилници „Патуваме со детските права и обврски“, со учество на претседателите и замениците-претседатели на паралелките од IV до IX одделение.</p></article>
+        <article class="card"><span class="event-date">План за следен состанок</span><h3>Програма за работа и Ден на демократија</h3><p>Како предлог-точки за следниот состанок се наведени донесување програма за работа на парламентот и договор за спроведување на Денот на демократија.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="proposals">
+      <div class="section-heading"><h2>Предлози од учениците</h2><p>Имате идеја или сакате да пријавите проблем? Испратете предлог или приговор директно преку оваа форма.</p></div>
+      <div class="card form-card">
+        <div class="notice"><strong>Приватност:</strong> пораките се испраќаат до е-поштата на Ученичкиот парламент и не се објавуваат јавно на веб-сајтот. Не внесувајте лозинки, адреса, телефонски број или детали што не се потребни за разгледување на пораката. Ако станува збор за итна опасност, веднаш обратете се кај наставник, стручната служба или друг доверлив возрасен.</div>
+        <form id="proposalForm" action="https://formsubmit.co/ucenickiparlament26.27@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Нова порака од веб-сајтот на Ученичкиот парламент">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px" aria-hidden="true">
+          <div class="form-row">
+            <div><label for="messageType">Вид на порака</label><select id="messageType" name="Вид на порака" required><option value="">Избери</option><option>Предлог</option><option>Приговор</option></select></div>
+            <div><label for="proposalTopic">Тема</label><select id="proposalTopic" name="Тема" required><option value="">Избери тема</option><option>Училишна средина</option><option>Настани и активности</option><option>Безбедност и почитување</option><option>Детски права</option><option>Екологија</option><option>Друго</option></select></div>
+          </div>
+          <div class="form-row">
+            <div><label for="proposalName">Име (незадолжително)</label><input id="proposalName" name="Име" maxlength="80" placeholder="Може да остане празно"></div>
+            <div><label for="proposalClass">Одделение (незадолжително)</label><input id="proposalClass" name="Одделение" maxlength="20" placeholder="На пр. 8-2"></div>
+          </div>
+          <label for="proposalText">Опиши го предлогот или приговорот</label>
+          <textarea id="proposalText" name="Порака" maxlength="3000" required placeholder="Објасни што се случува или што би сакал/а да се подобри..."></textarea>
+          <p class="small-note">Името и одделението можеш да ги оставиш празни. Со испраќањето, пораката оди до овластеното лице што ја следи е-поштата на парламентот.</p>
+          <button class="button primary" type="submit">Испрати порака</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="section-heading"><h2>Новости</h2><p>Известувања и информации од Училишниот парламент.</p></div>
+      <div class="cards">
+        <article class="card"><span class="event-date">Октомври 2026</span><h3>Организирање на Ученичкиот парламент за 2026/2027</h3><p>На конститутивната седница се разгледани организацијата на работата, изборната комисија и предлог-точките за следниот состанок.</p></article>
+        <article class="card"><span class="event-date">7 и 9 октомври 2026</span><h3>„Патуваме со детските права и обврски“</h3><p>Преку разговор, размена на мислења и заеднички активности, учениците размислуваа за детските права и одговорностите што одат заедно со нив.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-heading"><h2>Галерија</h2><p>Фотографии од училишни активности, проекти и настани.</p></div>
+      <div class="notice">Фотографиите од училишните активности ќе бидат прикажани во оваа галерија.</div>
+      <div class="gallery-grid">
+        <div class="gallery-tile">📷<strong>Фотографија 1</strong><span class="small-note">Додади слика</span></div>
+        <div class="gallery-tile">📷<strong>Фотографија 2</strong><span class="small-note">Додади слика</span></div>
+        <div class="gallery-tile">📷<strong>Фотографија 3</strong><span class="small-note">Додади слика</span></div>
+        <div class="gallery-tile">📷<strong>Фотографија 4</strong><span class="small-note">Додади слика</span></div>
+        <div class="gallery-tile">📷<strong>Фотографија 5</strong><span class="small-note">Додади слика</span></div>
+        <div class="gallery-tile">📷<strong>Фотографија 6</strong><span class="small-note">Додади слика</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="documents">
+      <div class="section-heading"><h2>Правила, права и улоги</h2><p>Информации за ученичкото организирање во ООУ „Кочо Рацин“ – Прилеп, подготвени според Правилникот за ученичко организирање и учество за ученичко организирање и учество, донесен на 2 февруари 2021 година (деловоден број 01-39/2), врз основа на член 68 од Законот за основното образование и Статутот на училиштето, како и според материјалите за учебната 2026/2027 година. Овде се прикажани објаснувања, а не оригиналните документи.</p></div>
+      <article class="card">
+        <h3>Како е организирано ученичкото учество?</h3>
+        <p>Според Правилникот на училиштето, сите ученици ја сочинуваат училишната заедница. Учениците можат да се организираат преку заедниците на паралелките и преку Ученичкиот парламент. Парламентот го сочинуваат претседателите на заедниците на паралелките, кои ги пренесуваат мислењата, прашањата и предлозите на своите соученици.</p>
+        <p>Претседателите на заедниците на паралелките се избираат од учениците со непосредно и тајно гласање. Мандатот е една учебна година, со можност за повторен избор. Изборите за телата на одделенската заедница се организираат секоја учебна година.</p>
+      </article>
+      <div class="cards">
+        <article class="card"><div class="card-icon" aria-hidden="true">🗣️</div><h3>Улога на претседателот на паралелката</h3><p>Претседателот ги претставува учениците од својата паралелка во Ученичкиот парламент и пред другите училишни тела. Ги информира соучениците за прашањата за кои се разговара и одлучува, организира разговори за проблемите и предлозите во паралелката, учествува во работата на парламентот и соработува со другите претседатели.</p><p>Во рамките на својата улога, претседателот помага во мирното решавање на несогласувањата и може да поттикне дискусија за наставата, меѓусебната комуникација, оценувањето и училишната средина.</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">🏛️</div><h3>Улогата на Ученичкиот парламент</h3><p>Парламентот ги застапува интересите и правата на учениците и го поттикнува нивното активно учество во животот на училиштето. Може да предлага едукативни активности, дебати, хуманитарни и еколошки акции, културни и спортски настани и други иницијативи корисни за учениците.</p><p>Парламентот учествува во давањето предлози за воннаставни активности, ученичкиот стандард и годишните училишни програми, како и во евалуацијата на работата на училиштето. Преку своите претставници учествува и во работата на соодветни училишни тела.</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">🗓️</div><h3>Седници и донесување одлуки</h3><p>Според Правилникот за ученичко организирање и учество, Ученичкиот парламент одржува седници најмалку еднаш месечно. За парламентот да може да заседава и да одлучува, потребно е присуство на најмалку половина плус еден од вкупниот број претседатели на класни заедници. На седниците може да присуствуваат и други ученици и претставници на училиштето без право на глас.</p><p>Парламентот избира претседател, а во работата му помагаат заменик-претседателот и секретарот, кои се избираат од редот на координаторите на учебните години. Изборот на претседател се спроведува со тајно гласање и може да се одржи само кога се присутни најмалку две третини од вкупниот број претседатели на одделенски заедници. За избран се смета кандидатот со најголем број гласови според постапката утврдена во Правилникот.</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">🧩</div><h3>Координативно тело</h3><p>Координативното тело го сочинуваат координаторите на одделенијата, двајца наставници именувани од директорот од тимот за поддршка на ученичкото учество и секретарот на парламентот. Неговите главни задачи се подготовка на предлог-програма за работа и подготовка на материјалите за седниците.</p><p>Координатори за учебната 2026/2027 година се Мила Новоселец (VI одделение), Максимилијан Петровски (VII одделение), Маја Дамеска (VIII одделение) и Теодор Тркалески (IX одделение).</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">🤝</div><h3>Комисија за доверба и соработка</h3><p>Комисијата е механизам за подобрување на комуникацијата и соработката меѓу учениците и училиштето. Според Правилникот, во нејзиниот состав се вклучуваат секретарот на парламентот, наставник или стручен соработник, двајца ученици кои не се членови на парламентот и член именуван од Училишниот одбор.</p><p>Во работата на Комисијата учествуваат Михаил Секулоски, Елизабета Велеска, Сокле Митрески, Матеа Кузеска и Ивана Лашкоска.</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">🛡️</div><h3>Ученички правобранител</h3><p>Ученичкиот правобранител е ученичка функција насочена кон промовирање и заштита на детските права. Според правилата за ученичко организирање и учество, се избира со тајно гласање од учениците од VII до IX одделение. Правобранителот може да организира едукативни работилници, дебати и информативни активности, да прима поплаки и да соработува со училишната стручна служба.</p><p>Правилата предвидуваат дека правобранителот треба да ги сумира поплаките и состојбите поврзани со ученичките права во извештаи. </p></article>
+      </div>
+      <article class="card">
+        <h3>Претставување на учениците во училишните тела</h3>
+        <p>Правилникот предвидува Ученичкиот парламент да избира двајца ученички претставници за Училишниот одбор, како и претставници во соодветни стручни комисии и Советот на родители. За учебната 2026/2027 година, ученички претставници се Стефан Петровски и Нина Андоноска.</p>
+      </article>
+      <article class="card">
+        <h3>Детски права и одговорности во пракса</h3>
+        <p>На 7 и 9 октомври 2026 година, по повод Детската недела, членовите на Ученичкиот парламент — претседателите и замениците-претседатели на паралелките од IV до IX одделение — учествувале во две едукативни работилници на тема „Патуваме со детските права и обврски“. Преку разговор, размена на мислења и заеднички активности, учениците размислувале за значењето на детските права и за одговорностите што одат заедно со нив.</p>
+        <p>Главната порака на активностите е дека секое дете има право да биде сослушано, почитувано и прифатено, а познавањето на сопствените права оди заедно со почитувањето на правата на другите.</p>
+      </article>
+      
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-heading"><h2>Контакт</h2><p>За прашања поврзани со училиштето или работата на Ученичкиот парламент, користете ги соодветните контакти подолу.</p></div>
+      <div class="contact-grid">
+        <article class="card"><div class="card-icon" aria-hidden="true">🏫</div><h3>Служби во училиштето</h3><p><strong>ООУ „Кочо Рацин“ – Прилеп</strong></p><p>За информации и прашања, обратете се до училишната администрација или до стручната служба во училиштето.</p></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">✉️</div><h3>Ученички парламент</h3><p>За предлози, приговори и прашања поврзани со Ученичкиот парламент, пишете на:</p><p><a href="mailto:ucenickiparlament26.27@gmail.com"><strong>ucenickiparlament26.27@gmail.com</strong></a></p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p><strong>Училишен парламент</strong> · ОУ „Кочо Рацин“ – Прилеп</p>
+      <p>Твојот глас има значење.</p>
     </div>
-  </section>
+  </footer>
 
-  <section id="clenovi" class="section">
-    <h2>Членови на Ученичкиот парламент</h2>
+  <script>
+    const nav = document.getElementById('mainNav');
+    const menuToggle = document.getElementById('menuToggle');
+    const navButtons = Array.from(nav.querySelectorAll('[data-section]'));
+    const sections = Array.from(document.querySelectorAll('.section'));
 
-    <div class="card">
-      <h3>Раководство</h3>
-      <p><strong>Претседател:</strong> Стефан Петровски</p>
-      <p><strong>Заменик-претседател:</strong> Нина Андоноска</p>
-      <p><strong>Секретар:</strong> Михаил Секулоски</p>
-    </div>
-
-    <div class="card">
-      <h3>Координатори по одделенија</h3>
-      <p><strong>VI одделение:</strong> Мила Новоселец</p>
-      <p><strong>VII одделение:</strong> Максимилијан Петровски</p>
-      <p><strong>VIII одделение:</strong> Маја Дамеска</p>
-      <p><strong>IX одделение:</strong> Теодор Тркалески</p>
-    </div>
-
-    <div class="card">
-      <h3>Координативно тело</h3>
-      <p>Благица Кусеска и Кети Шишкоска</p>
-    </div>
-
-    <div class="card">
-      <h3>Комисија за доверба и соработка</h3>
-      <ul>
-        <li>Михаил Секулоски</li>
-        <li>Елизабета Велеска</li>
-        <li>Сокле Митрески</li>
-        <li>Матеа Кузеска</li>
-        <li>Ивана Лашкоска</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Претставници во училишните тела</h3>
-      <p>Стефан Петровски и Нина Андоноска.</p>
-    </div>
-
-    <p class="notice">
-      Оваа верзија содржи основен список на членовите. Пред јавно
-      објавување, проверете ги имињата и добијте одобрение од училиштето.
-    </p>
-  </section>
-
-  <section id="aktivnosti" class="section">
-    <h2>Активности</h2>
-
-    <div class="card">
-      <h3>Конститутивна средба</h3>
-      <p>
-        Во октомври 2026 година е предвидена средба за организирање
-        на работата и утврдување на приоритетите на Ученичкиот парламент.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Работилници за детските права</h3>
-      <p>
-        На 7 и 9 октомври 2026 година се планирани активности на тема
-        „Патуваме со детските права и обврски“, со цел учениците подобро
-        да ги запознаат своите права и одговорности.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Ден на демократијата</h3>
-      <p>
-        Планирање активности што ќе ја поттикнат ученичката вклученост,
-        слободното изразување мислења и почитувањето на различните ставови.
-      </p>
-    </div>
-  </section>
-
-  <section id="predlozi" class="section">
-    <h2>Предлози и приговори од учениците</h2>
-
-    <p>
-      Имаш предлог за подобрување на училиштето или сакаш да пријавиш
-      проблем? Пополни ја формата подолу.
-    </p>
-
-    <p class="notice">
-      Испратените пораки се наменети за Ученичкиот парламент и не се
-      прикажуваат јавно на оваа веб-страница. Не внесувај лозинки,
-      адреса на живеење или други чувствителни лични податоци.
-      За сериозен проблем што бара итна помош, обрати се кај возрасно
-      лице од доверба или кај училишната стручна служба.
-    </p>
-
-    <form
-      action="https://formsubmit.co/ucenickiparlament26.27@gmail.com"
-      method="POST">
-
-      <input type="hidden" name="_subject"
-        value="Нов предлог или приговор - Ученички парламент">
-
-      <input type="hidden" name="_captcha" value="true">
-
-      <label for="ime">
-        Име (не е задолжително)
-        <input id="ime" type="text" name="Име"
-          placeholder="Внеси име ако сакаш">
-      </label>
-
-      <label for="oddelenie">
-        Одделение (не е задолжително)
-        <select id="oddelenie" name="Одделение">
-          <option value="">Избери одделение</option>
-          <option>VI одделение</option>
-          <option>VII одделение</option>
-          <option>VIII одделение</option>
-          <option>IX одделение</option>
-        </select>
-      </label>
-
-      <label for="tip">
-        Вид на порака
-        <select id="tip" name="Вид на порака" required>
-          <option value="">Избери</option>
-          <option>Предлог</option>
-          <option>Приговор</option>
-          <option>Идеја за активност</option>
-          <option>Друго</option>
-        </select>
-      </label>
-
-      <label for="poraka">
-        Твојата порака
-        <textarea id="poraka" name="Порака"
-          placeholder="Напиши го предлогот или приговорот..."
-          required maxlength="5000"></textarea>
-      </label>
-
-      <button class="submit-btn" type="submit">
-        Испрати порака
-      </button>
-    </form>
-
-    <p class="notice">
-      За испраќањето да работи, FormSubmit може прво да побара потврда
-      на наведената е-пошта. Формата сè уште треба да се тестира по
-      објавувањето на страницата.
-    </p>
-  </section>
-
-  <section id="novosti" class="section">
-    <h2>Новости</h2>
-
-    <div class="card">
-      <h3>Добредојдовте во учебната 2026/2027 година!</h3>
-      <p>
-        Ученичкиот парламент продолжува да работи на идеи и активности
-        што ќе придонесат за подобра училишна средина и поголема
-        вклученост на учениците.
-      </p>
-    </div>
-
-    <p>
-      Новите известувања ќе бидат објавувани во овој дел откако ќе
-      бидат потврдени од Ученичкиот парламент и училиштето.
-    </p>
-  </section>
-
-  <section id="pravila" class="section">
-    <h2>Правила и улоги</h2>
-
-    <div class="card">
-      <h3>Претседател</h3>
-      <p>
-        Ги координира активностите, ги води средбите и ги претставува
-        ставовите на Ученичкиот парламент.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Заменик-претседател</h3>
-      <p>
-        Му помага на претседателот и ги презема неговите задачи кога
-        тоа е потребно.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Секретар</h3>
-      <p>
-        Води белешки од средбите, ги организира записниците и помага
-        во следењето на договорените активности.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Координатори</h3>
-      <p>
-        Ги собираат мислењата на учениците од своите одделенија
-        и ги пренесуваат до Ученичкиот парламент.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Основни правила</h3>
-      <ul>
-        <li>Секој ученик има право да го изрази своето мислење.</li>
-        <li>Сите членови треба да се однесуваат со почит.</li>
-        <li>Предлозите се разгледуваат одговорно и без навредување.</li>
-        <li>Договорените активности треба да се следат и оценуваат.</li>
-        <li>Личните информации и доверливите пријави се обработуваат внимателно.</li>
-      </ul>
-    </div>
-
-    <p class="notice">
-      Ова се општи насоки. Официјалните правила треба да бидат
-      усогласени со важечките акти и процедурите на училиштето.
-    </p>
-  </section>
-
-  <section id="kontakt" class="section">
-    <h2>Контакт</h2>
-
-    <div class="card">
-      <h3>Ученички парламент</h3>
-      <p>
-        Е-пошта:
-        <a href="mailto:ucenickiparlament26.27@gmail.com">
-          ucenickiparlament26.27@gmail.com
-        </a>
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Училишна стручна служба</h3>
-      <p>
-        За прашања што бараат стручна помош, обрати се кај
-        училишниот психолог, педагог или училишната администрација.
-      </p>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <p>Ученички парламент | ОУ „Кочо Рацин“ – Прилеп</p>
-  <p>Учебна 2026/2027 година</p>
-</footer>
-
-<script>
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll(".section");
-    const buttons = document.querySelectorAll("nav button");
-
-    sections.forEach(function(section) {
-      section.classList.remove("active");
-    });
-
-    buttons.forEach(function(button) {
-      button.classList.remove("active");
-    });
-
-    const selectedSection = document.getElementById(sectionId);
-
-    if (selectedSection) {
-      selectedSection.classList.add("active");
+    function showSection(id) {
+      const target = document.getElementById(id);
+      if (!target || !target.classList.contains('section')) return;
+      sections.forEach(section => section.classList.toggle('active', section.id === id));
+      navButtons.forEach(button => {
+        const active = button.dataset.section === id;
+        button.classList.toggle('active', active);
+        if (active) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      nav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    const selectedButton = document.querySelector(
-      'nav button[data-section="' + sectionId + '"]'
-    );
-
-    if (selectedButton) {
-      selectedButton.classList.add("active");
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  document.querySelectorAll("nav button").forEach(function(button) {
-    button.addEventListener("click", function() {
-      showSection(button.dataset.section);
+    navButtons.forEach(button => button.addEventListener('click', () => showSection(button.dataset.section)));
+    document.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => showSection(button.dataset.go)));
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
     });
-  });
-</script>
 
+
+  </script>
 </body>
 </html>
